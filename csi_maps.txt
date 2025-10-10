@@ -19,4 +19,8 @@ Original high-resolution mesh
           ↓
 5. Adaptive remeshing (error-controlled)
           ↓
+
 New mesh (adaptive subdivision connectivity)
+
+obja link provided by G.Morin somewhere; for more information ask yasmina
+https://gitea.tforgione.fr/tforgione/obja
