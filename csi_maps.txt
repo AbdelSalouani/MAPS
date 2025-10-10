@@ -1,0 +1,22 @@
+Mesh simplification 		complexity
+Surface parametrization		3D->2D
+Subdivision & smoothing		
+Adaptive remeshing		rebuilding new meshes
+
+
+Dobkin-Kirkpatrick Algo
+
+
+Original high-resolution mesh
+          ↓
+1. Coarsification (modified DK hierarchy)
+          ↓
+2. Local flattening (conformal maps)
+          ↓
+3. Build hierarchical mapping Π (parameterization)
+          ↓
+4. Smooth parameterization (Loop subdivision)
+          ↓
+5. Adaptive remeshing (error-controlled)
+          ↓
+New mesh (adaptive subdivision connectivity)
