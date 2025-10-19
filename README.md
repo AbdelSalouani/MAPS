@@ -4,7 +4,8 @@
 
 ## Code Implementation
 
-*Authors:* Abdelmounaim Salouani\
-           Marwane Karaoui\
-           Yasmina Abbou-el-abbas\
-           Hedi Zahaf
+*Authors:* 
+Abdelmounaim Salouani\
+Marwane Karaoui\
+Yasmina Abbou-el-abbas\
+Hedi Zahaf
