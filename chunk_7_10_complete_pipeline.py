@@ -222,7 +222,7 @@ class MAPSProgressiveEncoder:
             ):
                 prev_level = hierarchy.get_level(level_idx - 1)
                 current_level = hierarchy.get_level(level_idx)
-                removed_vertices = prev_level.removed_vertices
+                removed_vertices = current_level.removed_vertices
 
                 if not removed_vertices:
                     continue
@@ -237,14 +237,8 @@ class MAPSProgressiveEncoder:
                         continue
                     output.add_vertex(vid, vertex.position())
                     vertex_present[vid] = True
-
-                    bary = parameterization.get(vid)
-                    if bary:
-                        mapped_vid = output.vertex_mapping[vid] + 1
-                        handle.write(
-                            f"tv {mapped_vid} {bary.triangle_id} "
-                            f"{bary.alpha:.6f} {bary.beta:.6f} {bary.gamma:.6f}\n"
-                        )
+                    # Note: Barycentric coordinates stored but not output
+                    # Vertices are already at correct positions
 
                 for face in current_level.faces:
                     if not (
