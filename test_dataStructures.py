@@ -15,7 +15,7 @@ CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 if CURRENT_DIR not in sys.path:
     sys.path.append(CURRENT_DIR)
 
-from chunk1_data_structures import (
+from dataStructures import (
     BarycentricCoord,
     Face,
     MeshHierarchy,

@@ -202,6 +202,7 @@ class MeshHierarchy:
         )
 
 
+## To rewrite because it has path conflicts
 def create_mesh_level_from_obj(obj_path: str, level: int = 0) -> MeshLevel:
     """
     Load an OBJ file and create a MeshLevel.
