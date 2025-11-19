@@ -15,7 +15,7 @@ def polygon_signed_area(points):
     return 0.5 * area
 
 def compute_angles_between_neighbors(center, neighbors):
-    center_pos = center.position
+    center_pos = center.position()
     angles = list()
     count = len(neighbors)
 
@@ -60,7 +60,7 @@ def conformal_flatten_1ring(center, neighbors):
     theta = 0.0
 
     for idx in range(count):
-        neighbor = neighbors(idx)
+        neighbor = neighbors[idx]
         radius = center.distance_to(neighbor)
         x = radius * np.cos(scale*theta)
         y = radius * np.sin(scale*theta)      

@@ -52,10 +52,10 @@ class BarycentricCoordinates:
 class MeshLevel:
     def __init__(self, l):
         self.level = l
-        self.vertices = dict(int, Vertex)
+        self.vertices = dict()
         self.faces = []
         self.removed_vertices = []
-        self.barycentric_map = dict(int, BarycentricCoordinates)
+        self.barycentric_map = dict()
 
     def add_vertex(self, v):
         self.vertices[v.id] = v

@@ -16,7 +16,7 @@ MIN_REMOVAL_FRACTION = 0.04
 def build_hierarchy(finest_level):
     cloned_finest = clone_mesh_level(finest_level)
     hierarchy = MeshHierarchy()
-    estimated_levels = estimate_num_levels(cloned_finest.num_vertices)
+    estimated_levels = estimate_num_levels(cloned_finest.num_vertices())
     cloned_finest.level = estimated_levels
     hierarchy.add_level(cloned_finest)
 

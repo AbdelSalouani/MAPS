@@ -11,12 +11,15 @@ class MeshTopology:
         self.edge_faces = self._build_edge_faces()
 
     def _build_adjacency(self):
-        adj = dict(int, set(int))
+        adj = dict()
         for face in self.faces:
             if not face.visible:
                 continue
 
             v1, v2, v3 = face.v1, face.v2, face.v3
+            for v in (v1, v2, v3):
+                adj.setdefault(v, set())
+
             adj[v1].add(v2)
             adj[v1].add(v3)
             adj[v2].add(v1)
@@ -32,7 +35,8 @@ class MeshTopology:
             if not face.visible:
                 continue
             for vid in face.vertices():
-                vf[vid].append(face_idx)
+                vf.setdefault(vid, []).append(face_idx)
+                
 
         return vf
     
@@ -49,7 +53,8 @@ class MeshTopology:
             ]
 
             for edge in edges:
-                ef[edge].append(face_idx)
+                ef.setdefault(edge, []).append(face_idx)
+        
         return ef
     
     def get_neighbors(self, vid):
@@ -126,7 +131,7 @@ class MeshTopology:
     
     def is_boundary_vertex(self, vertex_id):
         for neighbor in self.get_neighbors(vertex_id):
-            if self.is_boudary_edge(vertex_id, neighbor):
+            if self.is_boundary_edge(vertex_id, neighbor):
                 return True
             return False
     

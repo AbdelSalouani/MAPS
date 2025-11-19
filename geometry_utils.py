@@ -21,7 +21,7 @@ class GeometryUtils:
             return np.array([0.0, 0.0, 1.0], dtype=np.float64)
         return cross / norm
     
-    def compute_area_1ring(center, neighbors, topology):
+    def compute_area_1ring(self, center, neighbors, topology):
         star_faces = topology.get_star(center.id)
         total_area = 0.0
         for face in star_faces:
@@ -74,7 +74,7 @@ class GeometryUtils:
 
         return np.vstack((tan_u, tan_v, normal))
     
-    def estimate_curvature(center, neighbors, topology):
+    def estimate_curvature(self, center, neighbors, topology):
         if len(neighbors) < 3:
             return 0.0
         
