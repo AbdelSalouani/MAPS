@@ -152,10 +152,12 @@ class MeshTopology:
         candidates.sort(key=self.get_vertex_degree)
         for vid in candidates:
             if vid in marked:
-                independent.add(vid)
-                marked.add(vid)
-                for neighbor in self.get_neighbors(vid):
-                    marked.add(neighbor)
+                continue
+
+            independent.add(vid)
+            marked.add(vid)
+            for neighbor in self.get_neighbors(vid):
+                marked.add(neighbor)
 
         return independent
     
