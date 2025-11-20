@@ -108,7 +108,7 @@ def remove_vertices_and_retrianguate(current, coarser, indep_set, topology):
         if center_vid is None:
             continue
 
-        neighbor_ids = [nid for nid in topology.get_1ring_ordered(center_vid) if nid in coarser.vertices]
+        neighbor_ids = [nid for nid in topology.get_1ring_ordered_safe(center_vid) if nid in coarser.vertices]
 
         if len(neighbor_ids) < 3:
             continue

@@ -130,6 +130,7 @@ def retriangulate_hole(flattened_points):
     return valid_triangles
 
 def check_triangle_flipping(triangles, points):
+    corrected = list()
     for i, j, k in triangles:
         pi = np.array(points[i], dtype=np.float64)
         pj = np.array(points[j], dtype=np.float64)
@@ -138,9 +139,11 @@ def check_triangle_flipping(triangles, points):
         v2 = pk - pi
         signed_area = v1[0] * v2[1] - v1[1] * v2[0]
         if signed_area < 0:
-            return True
+            corrected.append((i, k, j))
+        else:
+            corrected.append((i, j, k))
         
-    return False
+    triangles = corrected
 
 ## better to be implemented right after or before retriangulate_hole
 def _ear_clipping_triangulation(points):

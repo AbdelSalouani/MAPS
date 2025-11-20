@@ -2,8 +2,8 @@
 
 import numpy as np
 
-from data_structures import Vertex
-from mesh_topology import MeshTopology
+# from data_structures import Vertex
+# from mesh_topology import MeshTopology
 
 class GeometryUtils:
     def compute_triangle_area(v1, v2, v3):

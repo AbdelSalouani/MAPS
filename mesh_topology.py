@@ -1,6 +1,9 @@
 
 
 import data_structures as ds
+from geometry_utils import *
+import math
+import numpy as np
 
 class MeshTopology:
     def __init__(self, vertices, faces):
@@ -129,6 +132,44 @@ class MeshTopology:
 
         return ordered
     
+
+    def _ring_has_breaks(self, center_id, ordered):
+        # Check successive neighbors share a face with center
+        for i in range(len(ordered)):
+            a = ordered[i]
+            b = ordered[(i+1) % len(ordered)]
+            edge = tuple(sorted((a, b)))
+            if edge not in self.edge_faces:
+                return True
+        return False
+    
+    
+    def get_1ring_ordered_safe(self, center_vertex_id):
+        center_vertex = self.vertices[center_vertex_id]
+        neighbor_ids = self.get_neighbors(center_vertex.id)
+        if len(neighbor_ids) <= 2:
+            return neighbor_ids
+        # Try topological order first
+        ordered = self.get_1ring_ordered(center_vertex.id)
+        if self._ring_has_breaks(center_vertex.id, ordered): # type: ignore
+            # Fallback: geometric order in tangent plane
+            topology = MeshTopology(self.vertices, self.faces)
+            normal = GeometryUtils.estimate_vertex_normal(center_vertex, [], topology)
+            basis = GeometryUtils._build_tangent_basis(normal)
+            tan_u, tan_v = basis[0], basis[1]
+            cpos = center_vertex.position()
+            angles = []
+            for nid in neighbor_ids:
+                pos = self.vertices[nid].position()
+                diff = pos - cpos
+                u = float(np.dot(diff, tan_u))
+                v = float(np.dot(diff, tan_v))
+                angles.append((nid, math.atan2(v, u)))
+            angles.sort(key=lambda x: x[1])
+            ordered = [nid for nid, _ in angles]
+        return ordered
+
+
     def is_boundary_vertex(self, vertex_id):
         for neighbor in self.get_neighbors(vertex_id):
             if self.is_boundary_edge(vertex_id, neighbor):
