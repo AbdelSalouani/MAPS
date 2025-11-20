@@ -1,10 +1,12 @@
 import sys
-from pipeline import *
+from chunk_7_10_complete_pipeline import MAPSProgressiveEncoder
 
 infile = sys.argv[1]
 outfile = sys.argv[2]
 
-infile = 'example/' + infile
-outfile = 'example/' + outfile
+infile = 'obja/example/' + infile
+outfile = 'obja/example/' + outfile
 
-process_obj2obja(infile, outfile)
+encoder = MAPSProgressiveEncoder()
+encoder.process_obj_to_obja(infile, outfile)
+
