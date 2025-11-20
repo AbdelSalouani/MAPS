@@ -199,7 +199,8 @@ def _polygon_contains_point(points, indices, prev_idx, curr_idx, next_idx):
         p = np.array(points[idx], dtype=np.float64)
         if _point_in_triangle(p, a, b, c):
             return True
-        return False
+    
+    return False
 
 def _point_in_triangle(p, a, b, c):
     v0 = c - a
