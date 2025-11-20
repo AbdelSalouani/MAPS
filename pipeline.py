@@ -95,7 +95,7 @@ def project_vertex_to_base(point, base_triangles):
 
 def compute_barycenter(point, v1, v2, v3):
     v0_vec = v2 - v1
-    v1_vec = v2 - v1
+    v1_vec = v3 - v1
     v2_vec = point - v1
 
     d00 = np.dot(v0_vec, v0_vec)
